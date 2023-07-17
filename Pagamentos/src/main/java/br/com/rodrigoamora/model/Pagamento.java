@@ -13,17 +13,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "pagamentos")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class Pagamento {
 
 	@Id
@@ -57,5 +49,77 @@ public class Pagamento {
 	private Long pedidoId;
 	
 	private Long formaDePagamentoId;
+	
+	public Long getId() {
+		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	public BigDecimal getValor() {
+		return valor;
+	}
+	
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+	
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
+	public String getNumero() {
+		return numero;
+	}
+	
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+	
+	public String getExpiracao() {
+		return expiracao;
+	}
+	
+	public void setExpiracao(String expiracao) {
+		this.expiracao = expiracao;
+	}
+	
+	public String getCodigo() {
+		return codigo;
+	}
+	
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+	
+	public Status getStatus() {
+		return status;
+	}
+	
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+	
+	public Long getFormaDePagamentoId() {
+		return formaDePagamentoId;
+	}
+	
+	public void setFormaDePagamentoId(Long formaDePagamentoId) {
+		this.formaDePagamentoId = formaDePagamentoId;
+	}
+	
+	public Long getPedidoId() {
+		return pedidoId;
+	}
+	
+	public void setPedidoId(Long pedidoId) {
+		this.pedidoId = pedidoId;
+	}
 	
 }
