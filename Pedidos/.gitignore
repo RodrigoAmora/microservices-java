@@ -31,3 +31,11 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+bin
