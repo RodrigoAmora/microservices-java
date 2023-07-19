@@ -1,5 +1,5 @@
 # microservice-java
-Projeto de exemplo de Micro-serviços em Java usando o Srping Cloud.
+Projeto de exemplo de Microsserviços em Java usando o Srping Cloud.
 
 ##
 
