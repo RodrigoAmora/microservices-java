@@ -3,7 +3,7 @@ Descrição:
 ----------
 Projeto de exemplo de Microsserviços em Java usando o Srping Cloud.
 
-##
+<hr>
 
 Endpoints:
 ----------
@@ -32,4 +32,4 @@ O projeto o Java 17 e as seguintes dependências:
 * JPA
 * ModelMapper
 
-##
+<hr>
