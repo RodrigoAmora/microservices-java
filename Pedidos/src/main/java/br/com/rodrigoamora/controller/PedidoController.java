@@ -26,23 +26,22 @@ import jakarta.validation.constraints.NotNull;
 public class PedidoController {
 
     @Autowired
-    private PedidoService service;
+    private PedidoService pedidoService;
 
     @GetMapping()
     public List<PedidoDto> listarTodos() {
-        return service.obterTodos();
+        return this.pedidoService.obterTodos();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<PedidoDto> listarPorId(@PathVariable @NotNull Long id) {
-        PedidoDto dto = service.obterPorId(id);
-
+        PedidoDto dto = this.pedidoService.obterPorId(id);
         return  ResponseEntity.ok(dto);
     }
 
     @PostMapping()
     public ResponseEntity<PedidoDto> realizaPedido(@RequestBody @Valid PedidoDto dto, UriComponentsBuilder uriBuilder) {
-        PedidoDto pedidoRealizado = service.criarPedido(dto);
+        PedidoDto pedidoRealizado = this.pedidoService.criarPedido(dto);
 
         URI endereco = uriBuilder.path("/pedidos/{id}").buildAndExpand(pedidoRealizado.getId()).toUri();
 
@@ -52,14 +51,14 @@ public class PedidoController {
 
     @PutMapping("/{id}/status")
     public ResponseEntity<PedidoDto> atualizaStatus(@PathVariable Long id, @RequestBody StatusDto status){
-       PedidoDto dto = service.atualizaStatus(id, status);
+       PedidoDto dto = this.pedidoService.atualizaStatus(id, status);
        return ResponseEntity.ok(dto);
     }
 
 
     @PutMapping("/{id}/pago")
     public ResponseEntity<Void> aprovaPagamento(@PathVariable @NotNull Long id) {
-        service.aprovaPagamentoPedido(id);
+    	this.pedidoService.aprovaPagamentoPedido(id);
         return ResponseEntity.ok().build();
     }
     
@@ -67,4 +66,5 @@ public class PedidoController {
     public String retornaPorta(@Value("${local.server.port}") String porta) {
     	return String.format("Requisição respondida pela instância executando na porta %s", porta);
     }
+    
 }
