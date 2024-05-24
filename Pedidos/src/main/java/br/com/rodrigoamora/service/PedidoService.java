@@ -19,58 +19,59 @@ import jakarta.persistence.EntityNotFoundException;
 public class PedidoService {
 
     @Autowired
-    private PedidoRepository repository;
+    private PedidoRepository pedidoRepository;
 
     @Autowired
     private ModelMapper modelMapper;
 
 
     public List<PedidoDto> obterTodos() {
-        return repository.findAll().stream()
-                .map(p -> modelMapper.map(p, PedidoDto.class))
-                .collect(Collectors.toList());
+        return this.pedidoRepository.findAll().stream()
+                	.map(p -> modelMapper.map(p, PedidoDto.class))
+                	.collect(Collectors.toList());
     }
 
     public PedidoDto obterPorId(Long id) {
-        Pedido pedido = repository.findById(id)
-                .orElseThrow(EntityNotFoundException::new);
+        Pedido pedido = this.pedidoRepository.findById(id)
+                			.orElseThrow(EntityNotFoundException::new);
 
-        return modelMapper.map(pedido, PedidoDto.class);
+        return this.modelMapper.map(pedido, PedidoDto.class);
     }
 
     public PedidoDto criarPedido(PedidoDto dto) {
-        Pedido pedido = modelMapper.map(dto, Pedido.class);
+        Pedido pedido = this.modelMapper.map(dto, Pedido.class);
 
         pedido.setDataHora(LocalDateTime.now());
         pedido.setStatus(Status.REALIZADO);
         pedido.getItens().forEach(item -> item.setPedido(pedido));
-        Pedido salvo = repository.save(pedido);
+        Pedido salvo = this.pedidoRepository.save(pedido);
 
-        return modelMapper.map(pedido, PedidoDto.class);
+        return this.modelMapper.map(pedido, PedidoDto.class);
     }
 
     public PedidoDto atualizaStatus(Long id, StatusDto dto) {
 
-        Pedido pedido = repository.porIdComItens(id);
+        Pedido pedido = this.pedidoRepository.porIdComItens(id);
 
         if (pedido == null) {
             throw new EntityNotFoundException();
         }
 
         pedido.setStatus(dto.getStatus());
-        repository.atualizaStatus(dto.getStatus(), pedido);
-        return modelMapper.map(pedido, PedidoDto.class);
+        this.pedidoRepository.atualizaStatus(dto.getStatus(), pedido);
+        return this.modelMapper.map(pedido, PedidoDto.class);
     }
 
     public void aprovaPagamentoPedido(Long id) {
 
-        Pedido pedido = repository.porIdComItens(id);
+        Pedido pedido = this.pedidoRepository.porIdComItens(id);
 
         if (pedido == null) {
             throw new EntityNotFoundException();
         }
 
         pedido.setStatus(Status.PAGO);
-        repository.atualizaStatus(Status.PAGO, pedido);
+        this.pedidoRepository.atualizaStatus(Status.PAGO, pedido);
     }
+    
 }
