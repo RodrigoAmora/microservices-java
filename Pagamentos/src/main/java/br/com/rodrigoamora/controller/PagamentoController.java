@@ -29,22 +29,22 @@ import jakarta.validation.constraints.NotNull;
 public class PagamentoController {
 
 	@Autowired
-	private PagamentoService service;
+	private PagamentoService pagamentoService;
 	
 	@GetMapping
 	public Page<PagamentoDto> listar(@PageableDefault(size = 10) Pageable paginacao) {
-		return service.obterTodos(paginacao);
+		return this.pagamentoService.obterTodos(paginacao);
 	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<PagamentoDto> detalhar(@PathVariable @NotNull Long id) {
-		PagamentoDto dto = service.obterPorId(id);
+		PagamentoDto dto = this.pagamentoService.obterPorId(id);
 		return ResponseEntity.ok(dto);
 	}
 	
 	@PostMapping
 	public ResponseEntity<PagamentoDto> cadastrar(@RequestBody @Valid PagamentoDto dto, UriComponentsBuilder uriBuilder) {
-		PagamentoDto pagamento = service.criarPagamento(dto);
+		PagamentoDto pagamento = this.pagamentoService.criarPagamento(dto);
 		URI endereco = uriBuilder.path("/pagamentos/{id}").buildAndExpand(pagamento.getId()).toUri();
 
 		return ResponseEntity.created(endereco).body(pagamento);
@@ -52,23 +52,24 @@ public class PagamentoController {
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<PagamentoDto> atualizar(@PathVariable @NotNull Long id, @RequestBody @Valid PagamentoDto dto) {
-		PagamentoDto atualizado = service.atualizarPagamento(id, dto);
+		PagamentoDto atualizado = this.pagamentoService.atualizarPagamento(id, dto);
         return ResponseEntity.ok(atualizado);
 	}
 	
 	@DeleteMapping("/{id}")
     public ResponseEntity<PagamentoDto> remover(@PathVariable @NotNull Long id) {
-		service.excluirPagamento(id);
+		this.pagamentoService.excluirPagamento(id);
         return ResponseEntity.noContent().build();
 	}
 	
 	@PatchMapping("/{id}/confirmar")
 	@CircuitBreaker(name = "atualizaPedido", fallbackMethod = "pagamentoAutorizadoComIntegracaoPendente")
 	public void confirmarPagamento(@PathVariable @NotNull Long id) {
-		service.confirmarPagamento(id);
+		this.pagamentoService.confirmarPagamento(id);
 	}
 	
 	public void pagamentoAutorizadoComIntegracaoPendente(Long id, Exception e) {
-		service.alteraStatus(id);
+		this.pagamentoService.alteraStatus(id);
 	}
+	
 }
