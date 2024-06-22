@@ -33,10 +33,10 @@ O projeto o Java 17, Spring Boot 3.1.1 e as seguintes dependências:
 Rodando o Projeto:
 ------------------
 A orden certa de rodar o projeto é:
-1º - Server
-2º - Gateway
-3º - Pedidos
-4º - Pagamentos
+* 1º - Server
+* 2º - Gateway
+* 3º - Pedidos
+* 4º - Pagamentos
 
 Para rodar cada projeto execute o comando no diretório raiz de cada um dos projetos:
 ```shell script
