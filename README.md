@@ -3,8 +3,6 @@ Descrição:
 ----------
 Projeto de exemplo de Microsserviços em Java usando o Srping Cloud.
 
-<hr>
-
 Endpoints:
 ----------
 URL de Pagamentos: `http://{endereco-da-aplicacao}:8082/pagamentos-ms/{endpoint}`
@@ -32,4 +30,15 @@ O projeto o Java 17, Spring Boot 3.1.1 e as seguintes dependências:
 * ModelMapper
 * MySql
 
-<hr>
+Rodando o Projeto:
+------------------
+A orden certa de rodar o projeto é:
+1º - Server
+2º - Gateway
+3º - Pedidos
+4º - Pagamentos
+
+Para rodar cada projeto execute o comando no diretório raiz de cada um dos projetos:
+```shell script
+mvn spring-boot:run
+```
