@@ -43,7 +43,8 @@ public class PagamentoController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<PagamentoDto> cadastrar(@RequestBody @Valid PagamentoDto dto, UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<PagamentoDto> cadastrar(@RequestBody @Valid PagamentoDto dto,
+												 UriComponentsBuilder uriBuilder) {
 		PagamentoDto pagamento = this.pagamentoService.criarPagamento(dto);
 		URI endereco = uriBuilder.path("/pagamentos/{id}").buildAndExpand(pagamento.getId()).toUri();
 
@@ -51,7 +52,8 @@ public class PagamentoController {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<PagamentoDto> atualizar(@PathVariable @NotNull Long id, @RequestBody @Valid PagamentoDto dto) {
+	public ResponseEntity<PagamentoDto> atualizar(@PathVariable @NotNull Long id,
+												 @RequestBody @Valid PagamentoDto dto) {
 		PagamentoDto atualizado = this.pagamentoService.atualizarPagamento(id, dto);
         return ResponseEntity.ok(atualizado);
 	}

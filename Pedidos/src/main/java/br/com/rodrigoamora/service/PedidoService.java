@@ -26,9 +26,10 @@ public class PedidoService {
 
 
     public List<PedidoDto> obterTodos() {
-        return this.pedidoRepository.findAll().stream()
-                	.map(p -> modelMapper.map(p, PedidoDto.class))
-                	.collect(Collectors.toList());
+        return this.pedidoRepository.findAll()
+        							.stream()
+        							.map(p -> modelMapper.map(p, PedidoDto.class))
+        							.collect(Collectors.toList());
     }
 
     public PedidoDto obterPorId(Long id) {
@@ -40,10 +41,10 @@ public class PedidoService {
 
     public PedidoDto criarPedido(PedidoDto dto) {
         Pedido pedido = this.modelMapper.map(dto, Pedido.class);
-
         pedido.setDataHora(LocalDateTime.now());
         pedido.setStatus(Status.REALIZADO);
         pedido.getItens().forEach(item -> item.setPedido(pedido));
+        
         Pedido salvo = this.pedidoRepository.save(pedido);
 
         return this.modelMapper.map(pedido, PedidoDto.class);
