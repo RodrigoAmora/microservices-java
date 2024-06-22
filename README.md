@@ -27,8 +27,16 @@ Dependências:
 O projeto o Java 17, Spring Boot 3.1.1 e as seguintes dependências:
 * Spring Cloud
 * Spring Data JPA
+* Spring AMQP
 * ModelMapper
 * MySql
+
+RabbitMQ:
+---------
+Execute o ocmando para rodar RabbitMQ via Docker:
+```shell script
+docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.10-management
+```
 
 Rodando o Projeto:
 ------------------
