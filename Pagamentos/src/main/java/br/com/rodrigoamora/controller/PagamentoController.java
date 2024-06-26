@@ -27,7 +27,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 
 @RestController
-@RequestMapping("/pagamentos")
+@RequestMapping("/pagamento")
 public class PagamentoController {
 
 	@Autowired
