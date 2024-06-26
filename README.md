@@ -10,8 +10,8 @@ URL de Pedidos: `http://<URL_DO_PORJETO>:8082/pedidos-ms/{endpoint}`
 <br><br>
 Na pasta `Postman` contém a collection para os endpoints via Postman.
 
-Subir instâncias novas:
------------------------
+Subindo instâncias novas:
+-------------------------
 Para subir novas instâncias, execute o comando no diretório raiz de Pagamentos e Pedidos:
 ```shell script
 mvn spring-boot:run -f pom.xml
