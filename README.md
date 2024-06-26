@@ -8,7 +8,7 @@ Endpoints:
 URL de Pagamentos: `http://<URL_DO_PORJETO>:8082/pagamentos-ms/{endpoint}` <br>
 URL de Pedidos: `http://<URL_DO_PORJETO>:8082/pedidos-ms/{endpoint}`
 <br><br>
-Na pasta `Postman` contém a collection para os endpoints via Postman
+Na pasta `Postman` contém a collection para os endpoints via Postman.
 
 Subir instâncias novas:
 -----------------------
@@ -45,7 +45,7 @@ mvn clean install
 
 Docker:
 -------
-Após gerar o .jar de cada projeto, gerar a imagem de cada um dos projetos:
+Após gerar o .jar de cada projeto, gerar a imagem de cada um dos projetos:<br>
 <b>Server:</b>
 ```shell script
 docker build --tag=server:latest .
@@ -68,11 +68,13 @@ docker build --tag=pedidos:latest .
 
 RabbitMQ:
 ---------
-#Execute o comando para rodar RabbitMQ via Docker:
-#```shell script
-#docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.10-management
-#```
-Para acessar o RabbitMQ, acesse o endereço:
+<!--
+Execute o comando para rodar RabbitMQ via Docker:
+```shell script
+docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.10-management
+```
+-->
+Para acessar o RabbitMQ, acesse o endereço:<br>
 `http://<URL_DO_PORJETO>:15672/`
 <br>
 <b>Usuário:</b> Guest
