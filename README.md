@@ -87,7 +87,7 @@ A orden certa de rodar o projeto é:
 * 3º - Pedidos
 * 4º - Pagamentos
 
-Para rodar cada projeto execute o comando no diretório raiz de cada um dos projetos:
+Para rodar cada projeto localmenste, execute o comando no diretório raiz de cada um dos projetos:
 ```shell script
 mvn spring-boot:run
 ```
