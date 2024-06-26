@@ -74,10 +74,9 @@ Execute o comando para rodar RabbitMQ via Docker:
 docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.10-management
 ```
 -->
-Para acessar o RabbitMQ, acesse o endereço:<br>
-`http://<URL_DO_PORJETO>:15672/`
+Para acessar o RabbitMQ, acesse o endereço: `http://<URL_DO_PORJETO>:15672/`
 <br>
-<b>Usuário:</b> Guest
+<b>Usuário:</b> Guest <br>
 <b>Senha:</b> Guest
 
 Rodando o Projeto:
