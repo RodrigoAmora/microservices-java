@@ -1,0 +1,79 @@
+{
+	"info": {
+		"_postman_id": "c35cc98b-76fb-4bb4-a968-2f7d49c12191",
+		"name": "Microservices-Java",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8543961"
+	},
+	"item": [
+		{
+			"name": "Pagamento",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"valor\": 1300.00,\n    \"nome\": \"Pedido exemplo\",\n    \"numero\": \"123456\",\n    \"expiracao\": \"10/2028\",\n    \"codigo\": 875,\n    \"status\": \"CONFIRMADO\",\n    \"formaDePagamentoId\": 1,\n    \"pedidoId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/pagamentos-ms/pagamentos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"pagamentos-ms",
+						"pagamentos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pagamento",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/pagamentos-ms/pagamentos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"pagamentos-ms",
+						"pagamentos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pedidos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/pedidos-ms/pedidos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"pedidos-ms",
+						"pedidos"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
