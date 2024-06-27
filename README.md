@@ -8,7 +8,7 @@ Endpoints:
 URL de Pagamentos: `http://<URL_DO_PORJETO>:8082/pagamentos-ms/{endpoint}` <br>
 URL de Pedidos: `http://<URL_DO_PORJETO>:8082/pedidos-ms/{endpoint}`
 <br><br>
-Na pasta `Postman` contém a collection para os endpoints via Postman.
+Na pasta `Postman` contém a collection para usar os endpoints via Postman.
 
 Dependências:
 -------------
@@ -28,13 +28,6 @@ Banco de dados:
 ---------------
 O projeto usa o MySQL para ambiente de desenvolvimento e o H2 para o ambiente de teste.<br>
 Para acessar o painel do H2: `<URL_DO_PORJETO>/h2-console`
-
-Subindo instâncias novas:
--------------------------
-Para subir novas instâncias, execute o comando no diretório raiz de Pagamentos e Pedidos:
-```shell script
-mvn spring-boot:run -f pom.xml
-```
 
 Gerando o arquivo .jar:
 -----------------------
@@ -90,6 +83,12 @@ A orden certa de rodar o projeto é:
 Para rodar cada projeto localmenste, execute o comando no diretório raiz de cada um dos projetos:
 ```shell script
 mvn spring-boot:run
+```
+Subindo instâncias novas:
+-------------------------
+Para subir novas instâncias, execute o comando no diretório raiz de Pagamentos e Pedidos:
+```shell script
+mvn spring-boot:run -f pom.xml
 ```
 
 Autor:
