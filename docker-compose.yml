@@ -42,7 +42,7 @@ services:
     build:
       context: Server/
       dockerfile: Dockerfile
-    image: server #rodrigoamora/rodrigo-springboot
+    image: server
     container_name: 'server'
     #hostname: spring
     ports:
@@ -55,7 +55,7 @@ services:
     build:
       context: Gateway/
       dockerfile: Dockerfile
-    image: gateway #rodrigoamora/rodrigo-springboot
+    image: gateway
     container_name: 'gateway'
     #hostname: spring
     environment:
@@ -71,11 +71,11 @@ services:
     build:
       context: Pedidos/
       dockerfile: Dockerfile
-    image: pedidos #rodrigoamora/rodrigo-springboot
+    image: pedidos
     container_name: 'pedidos'
     #hostname: spring
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-pedidos:3306/pedido?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-pedidos:3307/pedido?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: rodrigo@1988
       SPRING_PROFILES_ACTIVE: dev
@@ -89,7 +89,7 @@ services:
     build:
       context: Pagamentos/
       dockerfile: Dockerfile
-    image: pagamentos #rodrigoamora/rodrigo-springboot
+    image: pagamentos
     container_name: 'pagamentos'
     #hostname: spring
     environment:
