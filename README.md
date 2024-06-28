@@ -10,7 +10,7 @@ Endpoints:
 http://localhost:8082/pagamentos-ms/{endpoint}
 ```
 <br>
-<b>URL de Pedidos:</b>
+<b>URL de Pedidos:</b><br>
 ```shell script
 http://localhost:8082/pedidos-ms/{endpoint}
 ```
