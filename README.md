@@ -5,8 +5,15 @@ Projeto de exemplo de Microsserviços em Java usando o Srping Cloud e o RabbitMQ
 
 Endpoints:
 ----------
-URL de Pagamentos: `http://<URL_DO_PORJETO>:8082/pagamentos-ms/{endpoint}` <br>
-URL de Pedidos: `http://<URL_DO_PORJETO>:8082/pedidos-ms/{endpoint}`
+<b>URL de Pagamentos:</b>
+```shell script
+http://localhost:8082/pagamentos-ms/{endpoint}
+```
+<br>
+<b>URL de Pedidos:</b>
+```shell script
+http://localhost:8082/pedidos-ms/{endpoint}
+```
 <br><br>
 Na pasta `Postman` contém a collection para usar os endpoints via Postman.
 
@@ -27,7 +34,10 @@ O projeto o Java 17 e as seguintes dependências:
 Banco de dados:
 ---------------
 O projeto usa o MySQL para ambiente de desenvolvimento e o H2 para o ambiente de teste.<br>
-Para acessar o painel do H2: `<URL_DO_PORJETO>/h2-console`
+Para acessar o painel do H2:
+```shell script
+http://localhost:8082/h2-console
+```
 
 Gerando o arquivo .jar:
 -----------------------
@@ -38,25 +48,11 @@ mvn clean install
 
 Docker:
 -------
-Após gerar o .jar de cada projeto, gerar a imagem de cada um dos projetos:<br>
-<b>Server:</b>
+Para rodar o projeto no Docker, primeiro deve-se gerar o .jar de cada projeto. Após isso, deve-se gerar o build e subir dos contêiner do Docker:<br>
 ```shell script
-docker build --tag=server:latest .
-```
+docker-compose build
 
-<b>Gateway:</b>
-```shell script
-docker build --tag=gateway:latest .
-```
-
-<b>Pagamenstos:</b>
-```shell script
-docker build --tag=pagamentos:latest .
-```
-
-<b>Pedidos:</b>
-```shell script
-docker build --tag=pedidos:latest .
+docker-compose up -d
 ```
 
 RabbitMQ:
