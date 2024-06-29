@@ -18,7 +18,7 @@ http://localhost:8082/pedidos-ms/{endpoint}
 ```
 
 ##
-Na pasta `<b>Postman</b>` contém a collection para usar os endpoints via Postman.
+Na pasta <b>`Postman`</b> contém a collection para usar os endpoints via Postman.
 
 Dependências:
 -------------
@@ -36,11 +36,7 @@ O projeto usa o Java 17 e as seguintes dependências:
 
 Banco de dados:
 ---------------
-O projeto usa o MySQL para ambiente de desenvolvimento e produção e o H2 para o ambiente de teste.<br><br>
-Para acessar o painel do H2:
-```shell script
-http://localhost:8082/h2-console
-```
+O projeto usa o banco de dados MySQL.
 
 Gerando o arquivo .jar:
 -----------------------
@@ -63,7 +59,7 @@ mvn spring-boot:run
 ```
 Subindo instâncias novas:
 -------------------------
-Para subir novas instâncias, execute o comando no diretório raiz de Pagamentos e Pedidos:
+Para subir novas instâncias, execute o comando no diretório raiz de <b>`Pagamentos e Pedidos`</b>:
 ```shell script
 mvn spring-boot:run -f pom.xml
 ```
@@ -87,7 +83,7 @@ http://localhost:15672/
 Docker:
 -------
 Para rodar o projeto em um container Docker, primeiro deve-se gerar o .jar de cada projeto.<br>
-Após isso, deve-se gerar o build e subir dos container do Docker:<br>
+Após isso, deve-se gerar o build e subir os containers do Docker:<br>
 ```shell script
 docker-compose build
 
