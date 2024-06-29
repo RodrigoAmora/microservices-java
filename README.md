@@ -18,11 +18,11 @@ http://localhost:8082/pedidos-ms/{endpoint}
 ```
 
 ##
-Na pasta `Postman` contém a collection para usar os endpoints via Postman.
+Na pasta `<b>Postman</b>` contém a collection para usar os endpoints via Postman.
 
 Dependências:
 -------------
-O projeto o Java 17 e as seguintes dependências:
+O projeto usa o Java 17 e as seguintes dependências:
 * Spring Boot 3.1.1
 * Spring Cloud
 * Spring Data JPA
@@ -36,7 +36,7 @@ O projeto o Java 17 e as seguintes dependências:
 
 Banco de dados:
 ---------------
-O projeto usa o MySQL para ambiente de desenvolvimento e o H2 para o ambiente de teste.<br>
+O projeto usa o MySQL para ambiente de desenvolvimento e produção e o H2 para o ambiente de teste.<br><br>
 Para acessar o painel do H2:
 ```shell script
 http://localhost:8082/h2-console
@@ -49,13 +49,23 @@ Para gerar o arquivo <b>.jar</b>, execute o comando via terminal no diretório r
 mvn clean install
 ```
 
-Docker:
--------
-Para rodar o projeto no Docker, primeiro deve-se gerar o .jar de cada projeto. Após isso, deve-se gerar o build e subir dos contêiner do Docker:<br>
-```shell script
-docker-compose build
+Rodando o Projeto:
+------------------
+A orden certa de rodar o projeto localmente é:
+* 1º - Server
+* 2º - Gateway
+* 3º - Pedidos
+* 4º - Pagamentos
 
-docker-compose up -d
+Para rodar cada projeto localmente, execute o comando no diretório raiz de cada um dos projetos:
+```shell script
+mvn spring-boot:run
+```
+Subindo instâncias novas:
+-------------------------
+Para subir novas instâncias, execute o comando no diretório raiz de Pagamentos e Pedidos:
+```shell script
+mvn spring-boot:run -f pom.xml
 ```
 
 RabbitMQ:
@@ -74,23 +84,14 @@ http://localhost:15672/
 <b>Usuário:</b> Guest <br>
 <b>Senha:</b> Guest
 
-Rodando o Projeto:
-------------------
-A orden certa de rodar o projeto é:
-* 1º - Server
-* 2º - Gateway
-* 3º - Pedidos
-* 4º - Pagamentos
+Docker:
+-------
+Para rodar o projeto em um container Docker, primeiro deve-se gerar o .jar de cada projeto.<br>
+Após isso, deve-se gerar o build e subir dos container do Docker:<br>
+```shell script
+docker-compose build
 
-Para rodar cada projeto localmenste, execute o comando no diretório raiz de cada um dos projetos:
-```shell script
-mvn spring-boot:run
-```
-Subindo instâncias novas:
--------------------------
-Para subir novas instâncias, execute o comando no diretório raiz de Pagamentos e Pedidos:
-```shell script
-mvn spring-boot:run -f pom.xml
+docker-compose up -d
 ```
 
 Autor:
