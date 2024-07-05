@@ -25,17 +25,16 @@ public class PagamentoService {
 	private ModelMapper modelMapper;
 	
 	@Autowired(required = false)
-	private PedidoClient pedido;
+	private PedidoClient pedidoClient;
 	
 	public Page<PagamentoDto> obterTodos(Pageable paginacao) {
-		return this.pagamentoRepository
-                	.findAll(paginacao)
-                	.map(p -> modelMapper.map(p, PagamentoDto.class));
+		return this.pagamentoRepository.findAll(paginacao)
+                					   .map(p -> modelMapper.map(p, PagamentoDto.class));
     }
 	 
 	 public PagamentoDto obterPorId(Long id) {
 		 Pagamento pagamento = pagamentoRepository.findById(id)
-				 						.orElseThrow(() -> new EntityNotFoundException());
+				 								  .orElseThrow(() -> new EntityNotFoundException());
 
 		 return modelMapper.map(pagamento, PagamentoDto.class);
     }
@@ -62,24 +61,24 @@ public class PagamentoService {
 	 
 	 public void confirmarPagamento(Long id) {
 		 Optional<Pagamento> pagamento = this.pagamentoRepository.findById(id);
-		 
 		 if (!pagamento.isPresent()) {
 			 throw new EntityNotFoundException();
 	      }
-
 		 pagamento.get().setStatus(Status.CONFIRMADO);
+		 
 		 this.pagamentoRepository.save(pagamento.get());
-		 pedido.atualizaPagamento(pagamento.get().getPedidoId());
+		 
+		 Long pedidoId = pagamento.get().getPedidoId();
+		 this.pedidoClient.atualizaPagamento(pedidoId);
 	 }
 	 
 	 public void alteraStatus(Long id) {
 		 Optional<Pagamento> pagamento = this.pagamentoRepository.findById(id);
-
 		 if (!pagamento.isPresent()) {
 			 throw new EntityNotFoundException();
    		 }
-
 		 pagamento.get().setStatus(Status.CONFIRMADO_SEM_INTEGRACAO);
+		 
 		 this.pagamentoRepository.save(pagamento.get());
     }
 	 

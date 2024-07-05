@@ -12,6 +12,7 @@ import jakarta.validation.constraints.Positive;
 @Entity
 @Table(name = "item_do_pedido")
 public class ItemDoPedido {
+	
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
