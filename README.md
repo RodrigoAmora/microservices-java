@@ -20,17 +20,19 @@ Endpoints:
 ----------
 A documentação dos endpoints pode ser vista através do Swagger e do Redoc.<br>
 
-<b>Documentação da API de Pagamentos:</b>
+<b>Documentação da endpoints de Pagamentos:</b>
 ```shell script
-http://localhost:8082/pagamentos-ms/swagger-ui.html <br>
+http://localhost:8082/pagamentos-ms/swagger-ui.html
+
 http://localhost:8082/pagamentos-ms/redoc.html
 ```
 
 ##
 
-<b>Documentação da API de Pedidos:</b>
+<b>Documentação da endpoints de Pedidos:</b>
 ```shell script
-http://localhost:8082/pedidos-ms/swagger-ui.html <br>
+http://localhost:8082/pedidos-ms/swagger-ui.html
+
 http://localhost:8082/pedidos-ms/redoc.html
 ```
 
@@ -78,7 +80,7 @@ http://localhost:15672/
 <b>Senha:</b> Guest
 
 <br><br>
-Caso decida rodar o projeto loclamente e rodar somente o RabbitMQ via Docker, execeto o comando:
+Caso queria rodar o projeto loclamente e rodar somente o RabbitMQ via Docker, execeto o comando:
 ```shell script
 docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.10-management
 ```
