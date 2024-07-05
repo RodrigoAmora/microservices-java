@@ -65,7 +65,7 @@ services:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka/
     networks:
       - spring-boot-network
-    links:
+    depends_on:
       - server
   pedidos:
     build:
@@ -75,13 +75,13 @@ services:
     container_name: 'pedidos'
     #hostname: spring
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-pedidos:3307/pedido?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-pedidos:3306/pedido?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: rodrigo@1988
       SPRING_PROFILES_ACTIVE: dev
     networks:
       - spring-boot-network
-    links:
+    depends_on:
       - server
       - gateway
       - mysql-pedidos
@@ -93,13 +93,13 @@ services:
     container_name: 'pagamentos'
     #hostname: spring
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-pagamentos:3306/pagamento?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-pagamentos:3307/pagamento?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: rodrigo@1988
       SPRING_PROFILES_ACTIVE: dev
     networks:
       - spring-boot-network
-    links:
+    depends_on:
       - server
       - gateway
       - mysql-pagamentos
