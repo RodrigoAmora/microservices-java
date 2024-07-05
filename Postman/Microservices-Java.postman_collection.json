@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"valor\": 1300.00,\n    \"nome\": \"Pedido exemplo\",\n    \"numero\": \"123456\",\n    \"expiracao\": \"10/2028\",\n    \"codigo\": 875,\n    \"status\": \"CONFIRMADO\",\n    \"formaDePagamentoId\": 1,\n    \"pedidoId\": 1\n}",
+					"raw": "{\n    \"valor\": 1300.00,\n    \"nome\": \"Pedido exemplo\",\n    \"numero\": \"123456\",\n    \"expiracao\": \"10/2028\",\n    \"codigo\": 875\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -41,7 +41,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8082/pagamentos-ms/pagamentos",
+					"raw": "http://localhost:8082/pagamentos-ms/pagamento",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -49,7 +49,7 @@
 					"port": "8082",
 					"path": [
 						"pagamentos-ms",
-						"pagamentos"
+						"pagamento"
 					]
 				}
 			},
@@ -60,6 +60,35 @@
 			"request": {
 				"method": "GET",
 				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/pedidos-ms/pedidos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"pedidos-ms",
+						"pedidos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pedidos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"dataHora\": \"2024-07-05T02:02:31.706Z\",\n    \"status\": \"REALIZADO\",\n    \"itens\": [\n        {\n            \"quantidade\": 1,\n            \"descricao\": \"dhdkuhcuh\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://localhost:8082/pedidos-ms/pedidos",
 					"protocol": "http",
