@@ -20,19 +20,25 @@ Endpoints:
 ----------
 A documentação dos endpoints pode ser vista através do Swagger e do Redoc.<br>
 
-<b>Documentação da endpoints de Pagamentos:</b>
+<b>Documentação dos endpoints de Pagamentos via Swagger:</b>
 ```shell script
 http://localhost:8082/pagamentos-ms/swagger-ui.html
+```
 
+<b>Documentação dos endpoints de Pagamentos via Redoc:</b>
+```shell script
 http://localhost:8082/pagamentos-ms/redoc.html
 ```
 
 ##
 
-<b>Documentação da endpoints de Pedidos:</b>
+<b>Documentação dos endpoints de Pedidos via Swagger:</b>
 ```shell script
 http://localhost:8082/pedidos-ms/swagger-ui.html
+```
 
+<b>Documentação dos endpoints de Pedidos via Redoc:</b>
+```shell script
 http://localhost:8082/pedidos-ms/redoc.html
 ```
 
