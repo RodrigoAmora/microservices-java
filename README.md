@@ -3,23 +3,6 @@ Descrição:
 ----------
 Projeto de exemplo de Microsserviços em Java usando o Srping Cloud e o RabbitMQ para Mensageria.
 
-Endpoints:
-----------
-<b>URL de Pagamentos:</b>
-```shell script
-http://localhost:8082/pagamentos-ms/{endpoint}
-```
-
-##
-
-<b>URL de Pedidos:</b>
-```shell script
-http://localhost:8082/pedidos-ms/{endpoint}
-```
-
-##
-Na pasta <b>`Postman`</b> contém a collection para usar os endpoints via Postman.
-
 Dependências:
 -------------
 O projeto usa o Java 17 e as seguintes dependências:
@@ -28,11 +11,31 @@ O projeto usa o Java 17 e as seguintes dependências:
 * Spring Data JPA
 * Spring AMQP
 * ModelMapper
-* MySql
-* H2
 * Devtools
-* jUnit
-* Rest-Assured
+* Swagger
+* OpenAPI
+* MySql
+
+Endpoints:
+----------
+A documentação dos endpoints pode ser vista através do Swagger e do Redoc.<br>
+
+<b>Documentação da API de Pagamentos:</b>
+```shell script
+http://localhost:8082/pagamentos-ms/swagger-ui.html <br>
+http://localhost:8082/pagamentos-ms/redoc.html
+```
+
+##
+
+<b>Documentação da API de Pedidos:</b>
+```shell script
+http://localhost:8082/pedidos-ms/swagger-ui.html <br>
+http://localhost:8082/pedidos-ms/redoc.html
+```
+
+##
+Na pasta <b>`Postman`</b> contém a collection para usar os endpoints via Postman.
 
 Banco de dados:
 ---------------
@@ -47,7 +50,7 @@ mvn clean install
 
 Rodando o Projeto:
 ------------------
-A orden certa de rodar o projeto localmente é:
+A orden correta de rodar o projeto localmente é:
 * 1º - Server
 * 2º - Gateway
 * 3º - Pedidos
@@ -66,12 +69,6 @@ mvn spring-boot:run -f pom.xml
 
 RabbitMQ:
 ---------
-<!--
-Execute o comando para rodar RabbitMQ via Docker:
-```shell script
-docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.10-management
-```
--->
 Para acessar o RabbitMQ, acesse o endereço:
 ```shell script
 http://localhost:15672/
@@ -79,6 +76,12 @@ http://localhost:15672/
 <br>
 <b>Usuário:</b> Guest <br>
 <b>Senha:</b> Guest
+
+<br><br>
+Caso decida rodar o projeto loclamente e rodar somente o RabbitMQ via Docker, execeto o comando:
+```shell script
+docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.10-management
+```
 
 Docker:
 -------
