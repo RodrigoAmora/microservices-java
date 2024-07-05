@@ -3,17 +3,28 @@ package br.com.rodrigoamora.dto;
 import java.math.BigDecimal;
 
 import br.com.rodrigoamora.model.Status;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 
 public class PagamentoDto {
 
 	private Long id;
+	
 	private BigDecimal valor;
+	
 	private String nome;
+	
 	private String numero;
+	
 	private String expiracao;
+	
 	private String codigo;
+	
+	@Enumerated(EnumType.STRING)
 	private Status status;
+	
 	private Long formaDePagamentoId;
+	
 	private Long pedidoId;
 	
 	public Long getId() {
