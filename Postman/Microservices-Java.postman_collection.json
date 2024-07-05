@@ -41,7 +41,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8082/pagamentos-ms/pagamento",
+					"raw": "http://localhost:8082/pagamentos-ms/pagamentos",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -49,7 +49,7 @@
 					"port": "8082",
 					"path": [
 						"pagamentos-ms",
-						"pagamento"
+						"pagamentos"
 					]
 				}
 			},
