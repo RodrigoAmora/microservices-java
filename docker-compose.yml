@@ -5,7 +5,7 @@ services:
     container_name: 'mysql-pedidos'
     command: --default-authentication-plugin=mysql_native_password
     volumes:
-      - /var/lib/mysql:/var/lib/mysql
+      - mysql-pedidos:/var/lib/mysql
     networks:
       - spring-boot-network
     restart: always
@@ -24,7 +24,7 @@ services:
     container_name: 'mysql-pagamentos'
     command: --default-authentication-plugin=mysql_native_password
     volumes:
-      - /var/lib/mysql:/var/lib/mysql
+      - mysql-pagamentos:/var/lib/mysql
     networks:
       - spring-boot-network
     restart: always
@@ -34,10 +34,11 @@ services:
       - MYSQL_PASSWORD=rodrigo@1988
       - MYSQL_DATABASE=pagamento
       - MYSQL_ROOT_HOST=127.0.0.1
+      - MYSQL_TCP_PORT=52000
     ports:
-      - "3307:3306"
+      - "52000:3306"
     expose:
-      - "3307"
+      - "52000"
   server:
     build:
       context: Server/
@@ -62,7 +63,7 @@ services:
       SPRING_APPLICATION_NAME: gateway
       SPRING_PROFILES_ACTIVE: enableEureka
       EUREKA_INSTANCE_PREFER_IP_ADDRESS: "true"
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka/
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://server:8761/eureka/
     networks:
       - spring-boot-network
     depends_on:
@@ -78,7 +79,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-pedidos:3306/pedido?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: rodrigo@1988
-      SPRING_PROFILES_ACTIVE: dev
+      SPRING_PROFILES_ACTIVE: docker
     networks:
       - spring-boot-network
     depends_on:
@@ -93,10 +94,10 @@ services:
     container_name: 'pagamentos'
     #hostname: spring
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-pagamentos:3307/pagamento?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-pagamentos:52000/pagamento?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: rodrigo@1988
-      SPRING_PROFILES_ACTIVE: dev
+      SPRING_PROFILES_ACTIVE: docker
     networks:
       - spring-boot-network
     depends_on:
@@ -120,3 +121,6 @@ services:
 networks:
   spring-boot-network:
     driver: bridge
+volumes:
+  mysql-pagamentos:
+  mysql-pedidos:
