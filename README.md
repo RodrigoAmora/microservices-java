@@ -94,14 +94,14 @@ docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.10-ma
 Docker:
 -------
 Para rodar o projeto em um container Docker, primeiro deve-se gerar o .jar de cada um dos projetos.<br>
-Após isso, deve-se gerar o build e subir os containers do Docker.<br>
-Fazendo o build dos containers do Docker:
+Após isso, deve-se gerar o build e subir os containers do Docker.<br><br>
+<b>Fazendo o build dos containers do Docker:</b>
 ```shell script
 docker-compose build
 
 ```
 
-Subindo os containers do Docker:
+<b>Subindo os containers do Docker:</b>
 ```shell script
 docker-compose up -d
 ```
