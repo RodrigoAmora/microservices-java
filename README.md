@@ -20,24 +20,24 @@ Endpoints:
 ----------
 A documentação dos endpoints pode ser vista através do Swagger e do Redoc.<br>
 
-<b>Documentação dos endpoints de Pagamentos via Swagger:</b>
+<b>Documentação dos endpoints de Pagamento via Swagger:</b>
 ```shell script
 http://localhost:8082/pagamentos-ms/swagger-ui.html
 ```
 
-<b>Documentação dos endpoints de Pagamentos via Redoc:</b>
+<b>Documentação dos endpoints de Pagamento via Redoc:</b>
 ```shell script
 http://localhost:8082/pagamentos-ms/redoc.html
 ```
 
 ##
 
-<b>Documentação dos endpoints de Pedidos via Swagger:</b>
+<b>Documentação dos endpoints de Pedido via Swagger:</b>
 ```shell script
 http://localhost:8082/pedidos-ms/swagger-ui.html
 ```
 
-<b>Documentação dos endpoints de Pedidos via Redoc:</b>
+<b>Documentação dos endpoints de Pedido via Redoc:</b>
 ```shell script
 http://localhost:8082/pedidos-ms/redoc.html
 ```
@@ -77,7 +77,7 @@ mvn spring-boot:run -f pom.xml
 
 RabbitMQ:
 ---------
-Para acessar o RabbitMQ, acesse o endereço:
+Acesse o RabbitMQ através do endereço:
 ```shell script
 http://localhost:15672/
 ```
