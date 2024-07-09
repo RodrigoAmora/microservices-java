@@ -2,7 +2,6 @@ package br.com.rodrigoamora.controller;
 
 import java.net.URI;
 
-import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -53,8 +52,7 @@ public class PagamentoController {
 		PagamentoDto pagamento = this.pagamentoService.criarPagamento(dto);
 		URI endereco = uriBuilder.path("/pagamentos/{id}").buildAndExpand(pagamento.getId()).toUri();
 
-		Message message = new Message(("Criei um pagamento com o id " + pagamento.getId()).getBytes());
-        this.rabbitTemplate.send("pagamento.concluido", message);
+		this.rabbitTemplate.convertAndSend("pagamentos.concluido", pagamento);
         
 		return ResponseEntity.created(endereco).body(pagamento);
 	}
