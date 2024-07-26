@@ -52,7 +52,7 @@ public class PagamentoController {
 		PagamentoDto pagamento = this.pagamentoService.criarPagamento(dto);
 		URI endereco = uriBuilder.path("/pagamentos/{id}").buildAndExpand(pagamento.getId()).toUri();
 
-		this.rabbitTemplate.convertAndSend("pagamentos.concluido", pagamento);
+		this.rabbitTemplate.convertAndSend("pagamentos.ex", "", pagamento);
         
 		return ResponseEntity.created(endereco).body(pagamento);
 	}
