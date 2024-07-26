@@ -63,6 +63,7 @@ A orden correta de rodar o projeto localmente é:
 * 2º - Gateway
 * 3º - Pedidos
 * 4º - Pagamentos
+* 5º - Avaliação
 
 Para rodar cada projeto localmente, execute o comando no diretório raiz de cada um dos projetos:
 ```shell script
