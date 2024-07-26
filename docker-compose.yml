@@ -104,6 +104,17 @@ services:
       - server
       - gateway
       - mysql-pagamentos
+  avaliacao:
+    build:
+      context: Avaliacao/
+      dockerfile: Dockerfile
+    image: avaliacao
+    container_name: 'avaliacao'
+    networks:
+      - spring-boot-network
+    depends_on:
+      - server
+      - gateway
   rabbitmq:
     image: rabbitmq:3.10-management
     container_name: 'rabbitmq'
