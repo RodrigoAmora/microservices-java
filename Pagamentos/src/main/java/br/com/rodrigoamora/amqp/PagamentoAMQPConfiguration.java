@@ -1,7 +1,6 @@
 package br.com.rodrigoamora.amqp;
 
-import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.QueueBuilder;
+import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -14,15 +13,15 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class PagamentoAMQPConfiguration {
 
-	@Bean
-	Queue criaFila() {
-		/*
-		 * Criando uma fila não durável
-		 * Ambas as linhas fazem a mesma coisa
-		 */
-		//return new Queue ("pagamento.concluido", false);
-		return QueueBuilder.nonDurable("pagamento.concluido").build();
-	}
+//	@Bean
+//	Queue criaFila() {
+//		/*
+//		 * Criando uma fila não durável
+//		 * Ambas as linhas fazem a mesma coisa
+//		 */
+//		//return new Queue ("pagamento.concluido", false);
+//		return QueueBuilder.nonDurable("pagamento.concluido").build();
+//	}
 	
 	@Bean
     RabbitAdmin criaRabbitAdmin(ConnectionFactory conn) {
@@ -46,5 +45,10 @@ public class PagamentoAMQPConfiguration {
 	    rabbitTemplate.setMessageConverter(messageConverter);
 	    return  rabbitTemplate;
 	}
+	
+	@Bean
+	FanoutExchange fanoutExchange(){
+        return new FanoutExchange("pagamentos.ex");
+    }
 	
 }
