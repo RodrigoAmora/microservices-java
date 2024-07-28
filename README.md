@@ -56,7 +56,7 @@ Para gerar o arquivo <b>.jar</b>, execute o comando via terminal no diretório r
 mvn clean install
 ```
 
-Rodando o Projeto:
+Rodando o projeto:
 ------------------
 A orden correta de rodar o projeto localmente é:
 * 1º - Server
@@ -106,7 +106,9 @@ docker-compose build
 ```shell script
 docker-compose up -d
 ```
-<br><br>
+<br>
+
+##
 Para automatizar esse processo, basta executar o Shellscript <b>`docker_build_and_run.sh`</b>:
 ```shell script
 ./docker_build_and_run.sh
