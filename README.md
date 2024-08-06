@@ -84,10 +84,9 @@ http://localhost:15672/
 ```
 
 <b>Usuário:</b> Guest <br>
-<b>Senha:</b> Guest <br>
+<b>Senha:</b> Guest
 
-<br>
-
+##
 Para habilitar os pluginsRabbitMQ Shovel e RabbitMQ Shovel Management, execute o comando:
 ```shell script
 rabbitmq-plugins enable rabbitmq_shovel rabbitmq_shovel_management
