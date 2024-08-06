@@ -84,7 +84,14 @@ http://localhost:15672/
 ```
 
 <b>Usuário:</b> Guest <br>
-<b>Senha:</b> Guest
+<b>Senha:</b> Guest <br>
+
+<br>
+
+Para habilitar os pluginsRabbitMQ Shovel e RabbitMQ Shovel Management, execute o comando:
+```shell script
+rabbitmq-plugins enable rabbitmq_shovel rabbitmq_shovel_management
+```
 
 <br><br>
 Caso queria rodar o projeto loclamente e rodar somente o RabbitMQ via Docker, execeto o comando:
