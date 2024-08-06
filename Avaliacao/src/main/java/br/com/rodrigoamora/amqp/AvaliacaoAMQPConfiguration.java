@@ -46,12 +46,19 @@ public class AvaliacaoAMQPConfiguration {
     }
 
     @Bean
-    Binding bindPagamentoPedido(FanoutExchange fanoutExchange) {
+    Binding bindPagamentoPedido() {
         return BindingBuilder
                 .bind(filaDetalhesAvaliacao())
                 .to(fanoutExchange());
     }
 
+    @Bean
+    Binding bindDlxPagamentoPedido() {
+        return BindingBuilder
+                .bind(filaDlqDetalhesAvaliacao())
+                .to(deadLetterExchange());
+    }
+    
     @Bean
     RabbitAdmin criaRabbitAdmin(ConnectionFactory conn) {
         return new RabbitAdmin(conn);
@@ -62,4 +69,18 @@ public class AvaliacaoAMQPConfiguration {
         return event -> rabbitAdmin.initialize();
     }
     
+    @Bean
+    FanoutExchange deadLetterExchange() {
+        return ExchangeBuilder
+                .fanoutExchange("pagamentos.dlx")
+                .build();
+    }
+    
+    @Bean
+    Queue filaDlqDetalhesAvaliacao() {
+        return QueueBuilder
+                .nonDurable("pagamentos.detalhes-avaliacao-dlq")
+                .deadLetterExchange("pagamentos.dlx")
+                .build();
+    }
 }
