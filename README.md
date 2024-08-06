@@ -93,7 +93,7 @@ Para habilitar os pluginsRabbitMQ Shovel e RabbitMQ Shovel Management, execute o
 rabbitmq-plugins enable rabbitmq_shovel rabbitmq_shovel_management
 ```
 
-<br><br>
+##
 Caso queria rodar o projeto loclamente e rodar somente o RabbitMQ via Docker, execeto o comando:
 ```shell script
 docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.10-management
