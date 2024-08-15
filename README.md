@@ -10,6 +10,7 @@ O projeto usa o Java 17 e as seguintes dependências:
 * Spring Cloud
 * Spring Data JPA
 * Spring AMQP
+* Actuator
 * ModelMapper
 * Devtools
 * Swagger
