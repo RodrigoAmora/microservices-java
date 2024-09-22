@@ -39,7 +39,7 @@ echo -e "\033[01;32m##################\033[01;32m"
 
 cd Pagamentos/
 rm -rf target/
-mvn clean install
+mvn clean install -Pdocker
 ###############
 
 cd ../
@@ -54,7 +54,7 @@ echo -e "\033[01;32m###############\033[01;32m"
 
 cd Pedidos/
 rm -rf target/
-mvn clean install
+mvn clean install -Pdocker
 ###############
 
 cd ../
