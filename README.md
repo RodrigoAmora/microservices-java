@@ -54,7 +54,7 @@ Gerando o arquivo .jar:
 -----------------------
 Para gerar o arquivo <b>.jar</b>, execute o comando via terminal no diretório raiz de cada um dos projetos:
 ```shell script
-mvn clean install
+mvn clean install -P{profile}
 ```
 
 Rodando o projeto:
