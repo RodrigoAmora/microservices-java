@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Configuration;
 public class PedidoAMQPConfiguration {
 
 	@Bean
-    Jackson2JsonMessageConverter messageConverter(){
+    Jackson2JsonMessageConverter messageConverter() {
         return new Jackson2JsonMessageConverter();
     }
 
@@ -28,7 +28,7 @@ public class PedidoAMQPConfiguration {
 								  Jackson2JsonMessageConverter messageConverter) {
 		RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
 	    rabbitTemplate.setMessageConverter(messageConverter);
-	    return  rabbitTemplate;
+	    return rabbitTemplate;
 	}
 	
 	@Bean
