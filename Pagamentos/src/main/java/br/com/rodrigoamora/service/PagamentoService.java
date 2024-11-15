@@ -13,6 +13,8 @@ import br.com.rodrigoamora.http.PedidoClient;
 import br.com.rodrigoamora.model.Pagamento;
 import br.com.rodrigoamora.model.Status;
 import br.com.rodrigoamora.repository.PagamentoRepository;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
 import jakarta.persistence.EntityNotFoundException;
 
 @Service
@@ -26,6 +28,20 @@ public class PagamentoService {
 	
 	@Autowired(required = false)
 	private PedidoClient pedidoClient;
+	
+	
+	private Counter pagamentoFeito, pagamentoConfirmado;
+	
+	@Autowired
+	public PagamentoService(MeterRegistry registry) {
+		this.pagamentoFeito = Counter.builder("pagamento_feito")
+				  					 .description("Pagamentos feitos")
+				  					 .register(registry);
+
+		this.pagamentoConfirmado = Counter.builder("pagamento_confirmado")
+					   					  .description("Pagamentos confirmados")
+					   					  .register(registry);
+	}
 	
 	public Page<PagamentoDto> obterTodos(Pageable paginacao) {
 		return this.pagamentoRepository.findAll(paginacao)
@@ -44,7 +60,8 @@ public class PagamentoService {
 		 pagamento.setStatus(Status.CRIADO);
 		 
 		 this.pagamentoRepository.save(pagamento);
-
+		 this.pagamentoFeito.increment();
+		 
 		 return modelMapper.map(pagamento, PagamentoDto.class);
 	 }
 	 
@@ -63,10 +80,11 @@ public class PagamentoService {
 		 Optional<Pagamento> pagamento = this.pagamentoRepository.findById(id);
 		 if (!pagamento.isPresent()) {
 			 throw new EntityNotFoundException();
-	      }
+	     }
 		 pagamento.get().setStatus(Status.CONFIRMADO);
 		 
 		 this.pagamentoRepository.save(pagamento.get());
+		 this.pagamentoConfirmado.increment();
 		 
 		 Long pedidoId = pagamento.get().getPedidoId();
 		 this.pedidoClient.atualizaPagamento(pedidoId);
@@ -80,6 +98,6 @@ public class PagamentoService {
 		 pagamento.get().setStatus(Status.CONFIRMADO_SEM_INTEGRACAO);
 		 
 		 this.pagamentoRepository.save(pagamento.get());
-    }
+	 }
 	 
 }
