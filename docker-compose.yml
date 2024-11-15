@@ -3,6 +3,7 @@ services:
   mysql-pedidos:
     image: mysql/mysql-server:8.0.32-1.2.11-server
     container_name: 'mysql-pedidos'
+    hostname: 'mysql-pedidos'
     command: --default-authentication-plugin=mysql_native_password
     volumes:
       - mysql-pedidos:/var/lib/mysql
@@ -22,6 +23,7 @@ services:
   mysql-pagamentos:
     image: mysql/mysql-server:8.0.32-1.2.11-server
     container_name: 'mysql-pagamentos'
+    hostname: 'mysql-pagamentos'
     command: --default-authentication-plugin=mysql_native_password
     volumes:
       - mysql-pagamentos:/var/lib/mysql
@@ -45,7 +47,7 @@ services:
       dockerfile: Dockerfile
     image: server
     container_name: 'server'
-    #hostname: spring
+    hostname: server
     ports:
       - "8761:8761"
     expose:
@@ -58,7 +60,7 @@ services:
       dockerfile: Dockerfile
     image: gateway
     container_name: 'gateway'
-    #hostname: spring
+    hostname: gateway
     environment:
       SPRING_APPLICATION_NAME: gateway
       SPRING_PROFILES_ACTIVE: enableEureka
@@ -66,6 +68,8 @@ services:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://server:8761/eureka/
     networks:
       - spring-boot-network
+    links:
+      - server
     depends_on:
       - server
   pedidos:
@@ -74,7 +78,10 @@ services:
       dockerfile: Dockerfile
     image: pedidos
     container_name: 'pedidos'
-    #hostname: spring
+    ports:
+      - "8083:8080"
+    expose:
+      - "8083"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-pedidos:3306/pedido?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
@@ -82,6 +89,10 @@ services:
       SPRING_PROFILES_ACTIVE: docker
     networks:
       - spring-boot-network
+    links:
+      - server
+      - gateway
+      - mysql-pedidos
     depends_on:
       - server
       - gateway
@@ -92,7 +103,10 @@ services:
       dockerfile: Dockerfile
     image: pagamentos
     container_name: 'pagamentos'
-    #hostname: spring
+    ports:
+      - "8082:8080"
+    expose:
+      - "8082"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-pagamentos:52000/pagamento?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
@@ -100,6 +114,10 @@ services:
       SPRING_PROFILES_ACTIVE: docker
     networks:
       - spring-boot-network
+    links:
+      - server
+      - gateway
+      - mysql-pagamentos
     depends_on:
       - server
       - gateway
@@ -110,14 +128,25 @@ services:
       dockerfile: Dockerfile
     image: avaliacao
     container_name: 'avaliacao'
+    hostname: 'avaliacao'
+    ports:
+      - "8081:8080"
+    expose:
+      - "8081"
     networks:
       - spring-boot-network
+    links:
+      - server
+      - gateway
+      - pagamentos
+      - pedidos
     depends_on:
       - server
       - gateway
   rabbitmq:
     image: rabbitmq:3.10-management
     container_name: 'rabbitmq'
+    hostname: 'rabbitmq'
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -126,9 +155,49 @@ services:
       - "15672"
     networks:
       - spring-boot-network
-    depends_on:
+    links:
       - pagamentos
       - pedidos
+      - avaliacao
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    hostname: prometheus
+    restart: unless-stopped
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    volumes:
+      - ./Prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--web.enable-lifecycle'
+    ports:
+      - 9090:9090
+    networks:
+      - spring-boot-network
+    depends_on:
+      - pagamentos
+    links:
+      - pagamentos
+    user: root
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    volumes:
+      - ./grafana:/var/lib/grafana
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    networks:
+      - spring-boot-network
+    depends_on:
+      - prometheus
+    links:
+      - prometheus
 networks:
   spring-boot-network:
     driver: bridge
