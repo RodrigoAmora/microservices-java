@@ -13,6 +13,8 @@ import br.com.rodrigoamora.dto.StatusDto;
 import br.com.rodrigoamora.model.Pedido;
 import br.com.rodrigoamora.model.Status;
 import br.com.rodrigoamora.repository.PedidoRepository;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
 import jakarta.persistence.EntityNotFoundException;
 
 @Service
@@ -24,6 +26,13 @@ public class PedidoService {
     @Autowired
     private ModelMapper modelMapper;
 
+    private Counter pedidoRealizado;
+	
+	public PedidoService(MeterRegistry registry) {
+		this.pedidoRealizado = Counter.builder("pedido_realizado")
+				 					  .register(registry);
+	}
+	
 
     public List<PedidoDto> obterTodos() {
         return this.pedidoRepository.findAll()
@@ -47,6 +56,8 @@ public class PedidoService {
         
         Pedido salvo = this.pedidoRepository.save(pedido);
 
+        this.pedidoRealizado.increment();
+        
         return this.modelMapper.map(pedido, PedidoDto.class);
     }
 
