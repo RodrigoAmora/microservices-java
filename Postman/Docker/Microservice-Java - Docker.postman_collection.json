@@ -1,27 +1,13 @@
 {
 	"info": {
-		"_postman_id": "c35cc98b-76fb-4bb4-a968-2f7d49c12191",
-		"name": "Microservices-Java",
+		"_postman_id": "6672cb8b-65d5-4366-abd3-c5e4cf3c8f19",
+		"name": "Microservice-Java - Docker",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "8543961"
 	},
 	"item": [
 		{
-			"name": "Pagamento",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var moment = require('moment');",
-							"",
-							"pm.environment.set('currentdate', moment().format((\"MM/YY\")));"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
+			"name": "Pagamentos",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -35,14 +21,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/pagamentos-ms/pagamentos",
+					"raw": "http://localhost:8082/pagamentos",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8082",
 					"path": [
-						"pagamentos-ms",
 						"pagamentos"
 					]
 				}
@@ -50,19 +35,18 @@
 			"response": []
 		},
 		{
-			"name": "Pagamento",
+			"name": "Pagamentos",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8082/pagamentos-ms/pagamentos",
+					"raw": "http://localhost:8082/pagamentos",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8082",
 					"path": [
-						"pagamentos-ms",
 						"pagamentos"
 					]
 				}
@@ -75,14 +59,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8082/pedidos-ms/pedidos",
+					"raw": "http://localhost:8083/pedidos",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8082",
+					"port": "8083",
 					"path": [
-						"pedidos-ms",
 						"pedidos"
 					]
 				}
@@ -91,26 +74,12 @@
 		},
 		{
 			"name": "Pedidos",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var moment = require('moment');",
-							"",
-							"pm.environment.set('currentdate', moment().format((\"YYYY-MM-DDTHH:MM:SS\")));"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"dataHora\": {{currentdate}},\n    \"status\": \"REALIZADO\",\n    \"itens\": [\n        {\n            \"quantidade\": 1,\n            \"descricao\": \"dhdkuhcuh\"\n        }\n    ]\n}",
+					"raw": "{\n    \"status\": \"REALIZADO\",\n    \"itens\": [\n        {\n            \"quantidade\": 1,\n            \"descricao\": \"dhdkuhcuh\"\n        }\n    ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -118,14 +87,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/pedidos-ms/pedidos",
+					"raw": "http://localhost:8083/pedidos",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8082",
+					"port": "8083",
 					"path": [
-						"pedidos-ms",
 						"pedidos"
 					]
 				}
