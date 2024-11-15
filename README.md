@@ -36,12 +36,12 @@ http://localhost:8082/pagamentos-ms/redoc.html
 
 <b>Documentação dos endpoints de Pedido via Swagger:</b>
 ```shell script
-http://localhost:8082/pedidos-ms/swagger-ui.html
+http://localhost:8083/pedidos-ms/swagger-ui.html
 ```
 
 <b>Documentação dos endpoints de Pedido via Redoc:</b>
 ```shell script
-http://localhost:8082/pedidos-ms/redoc.html
+http://localhost:8083/pedidos-ms/redoc.html
 ```
 
 ##
