@@ -99,6 +99,23 @@ Caso queria rodar o projeto loclamente e rodar somente o RabbitMQ via Docker, ex
 docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.10-management
 ```
 
+Prometheus:
+-----------
+Acesse o Prometheus através do endereço:
+```shell script
+http://localhost:9090/
+```
+
+Grafana:
+--------
+Acesse o Grafana através do endereço:
+```shell script
+http://localhost:3000/
+```
+
+<b>Username:</b> admin <br>
+<b>Password:</b> admin
+
 Docker:
 -------
 Para rodar o projeto em um container Docker, primeiro deve-se gerar o .jar de cada um dos projetos.<br>
