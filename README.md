@@ -11,6 +11,7 @@ O projeto usa o Java 17 e as seguintes dependências:
 * Spring Data JPA
 * Spring AMQP
 * Actuator
+* Micrometer
 * ModelMapper
 * Devtools
 * Swagger
@@ -54,7 +55,7 @@ Gerando o arquivo .jar:
 -----------------------
 Para gerar o arquivo <b>.jar</b>, execute o comando via terminal no diretório raiz de cada um dos projetos:
 ```shell script
-mvn clean install -P{profile}
+mvn clean install -P{profile} -DskipTests
 ```
 
 Rodando o projeto:
@@ -123,7 +124,6 @@ Após isso, deve-se gerar o build e subir os containers do Docker.<br><br>
 <b>Fazendo o build dos containers do Docker:</b>
 ```shell script
 docker-compose build
-
 ```
 
 <b>Subindo os containers do Docker:</b>
