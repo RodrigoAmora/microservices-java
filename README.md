@@ -95,7 +95,7 @@ rabbitmq-plugins enable rabbitmq_shovel rabbitmq_shovel_management
 ```
 
 ##
-Caso queria rodar o projeto loclamente e rodar somente o RabbitMQ via Docker, execeto o comando:
+Caso queria rodar o projeto loclamente e rodar o RabbitMQ via Docker, execeto o comando:
 ```shell script
 docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.10-management
 ```
@@ -107,6 +107,12 @@ Acesse o Prometheus através do endereço:
 http://localhost:9090/
 ```
 
+##
+Caso queria rodar o projeto loclamente e rodar o Prometheus via Docker, execeto o comando:
+```shell script
+docker run --name prometheus -d -p 127.0.0.1:9090:9090 prom/prometheus
+```
+
 Grafana:
 --------
 Acesse o Grafana através do endereço:
@@ -116,6 +122,12 @@ http://localhost:3000/
 
 <b>Username:</b> admin <br>
 <b>Password:</b> admin
+
+##
+Caso queria rodar o projeto loclamente e rodar o Grafana via Docker, execeto o comando:
+```shell script
+docker run -d --name=grafana -p 3000:3000 grafana/grafana
+```
 
 Docker:
 -------
