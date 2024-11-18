@@ -1,13 +1,26 @@
 package br.com.rodrigoamora.amqp;
 
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
 import br.com.rodrigoamora.dto.PagamentoDto;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
 
 @Component
 public class AvaliacaoListener {
+	
+	private Counter pedidoAvaliado;
+	
+	@Autowired
+	public AvaliacaoListener(MeterRegistry registry) {
+		this.pedidoAvaliado = Counter.builder("pedido_avaliado")
+				  					 .description("Pagamentos feitos")
+				  					 .register(registry);
+	}
+	
     @RabbitListener(queues = "pagamentos.detalhes-avaliacao")
     public void recebeMensagem(@Payload PagamentoDto pagamento) {
     	System.out.println(pagamento.getId());
@@ -29,6 +42,9 @@ public class AvaliacaoListener {
                 pagamento.getValor(),
                 pagamento.getStatus());
 
+        this.pedidoAvaliado.increment();
+        
         System.out.println(mensagem);
     }
+    
 }
