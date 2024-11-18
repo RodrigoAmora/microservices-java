@@ -17,7 +17,7 @@ public class AvaliacaoListener {
 	@Autowired
 	public AvaliacaoListener(MeterRegistry registry) {
 		this.pedidoAvaliado = Counter.builder("pedido_avaliado")
-				  					 .description("Pagamentos feitos")
+				  					 .description("Pedidos avaliados")
 				  					 .register(registry);
 	}
 	
