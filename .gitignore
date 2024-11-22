@@ -1,2 +1,13 @@
 /.metadata/
+.idea
+
+## Grafana ##
+Grafana/plugins/
+
+## Prometheus ##
+Prometheus/prometheus_data/
+
+
+## MacOS ##
 .DS_Store
+
