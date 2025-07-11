@@ -3,6 +3,7 @@ package br.com.rodrigoamora.controller;
 import java.net.URI;
 import java.util.List;
 
+import br.com.rodrigoamora.controller.doc.PedidoApiDoc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ import jakarta.validation.constraints.NotNull;
 
 @RestController
 @RequestMapping("/pedidos")
-public class PedidoController {
+public class PedidoController implements PedidoApiDoc {
 
     @Autowired
     private PedidoService pedidoService;
@@ -50,7 +51,7 @@ public class PedidoController {
     }
 
     @PutMapping("/{id}/status")
-    public ResponseEntity<PedidoDto> atualizaStatus(@PathVariable Long id, @RequestBody StatusDto status){
+    public ResponseEntity<PedidoDto> atualizaStatus(@PathVariable Long id, @RequestBody StatusDto status) {
        PedidoDto dto = this.pedidoService.atualizaStatus(id, status);
        return ResponseEntity.ok(dto);
     }
