@@ -2,6 +2,7 @@ package br.com.rodrigoamora.controller;
 
 import java.net.URI;
 
+import br.com.rodrigoamora.controller.doc.PagamentoApiDoc;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,7 +28,7 @@ import jakarta.validation.constraints.NotNull;
 
 @RestController
 @RequestMapping("/pagamentos")
-public class PagamentoController {
+public class PagamentoController implements PagamentoApiDoc {
 
 	@Autowired
 	private PagamentoService pagamentoService;
